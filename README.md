@@ -35,8 +35,7 @@ Using **SHAP (SHapley Additive exPlanations)**, the black-box nature of the XGBo
 
 ---
 ## 💻 Core Source Code
-* Standard core machine learning pipelines, evaluation metrics, and SHAP explainability visualizations can be viewed directly in the [explainable_xgboost_iot_pipeline.ipynb](./Predictive_Maintenance.ipynb) notebook file.
-
+* Standard core machine learning pipelines, evaluation metrics, and SHAP explainability visualizations can be viewed directly in the [Predictive_Maintenance.ipynb](./Predictive_Maintenance.ipynb) notebook file.
 ---
 
 
