@@ -123,32 +123,34 @@ with tab3:
     🤝 **Bridging the Trust Gap for Industry 5.0:** Industries currently struggle with the "black box" nature of advanced ML like XGBoost. By applying SHAP, this framework provides technically verifiable transparency for every single prediction. When maintenance engineers can physically see *why* a machine is failing, they trust the AI. This human-centric transparency directly promotes the green energy efficiency goals of **Industry 5.0**.
     """)
     
-    st.subheader("📐 Custom Feature Generation Formulas")
+    st.subheader("📐 Custom Feature Generation Strategy")
     if "Chemical" in domain:
         st.markdown("""
-        **Dual-Domain Transformation Breakdown:**
-        * **Time-Domain Engineering:** Extracted rolling statistical metrics including standard deviations (`RP_std`) and moving means to capture early trend drift.
-        * **Frequency-Domain Signal Processing:** Applied **Fast Fourier Transform (FFT)** algorithms directly onto raw ambient properties (`VOC_FFT`) to reveal periodic volatility signatures invisible to standard classifiers.
+        **Dual-Domain Transformation (Rolling Analysis):**
+        * **Time-Domain Engineering:** Extracted rolling statistical metrics (mean, standard deviation) across the time-series windows to capture early baseline drift.
+        * **Frequency-Domain (Rolling FFT):** Applied Fast Fourier Transform (FFT) algorithms across the rolling windows for **all sensor telemetry** to systematically extract hidden periodic volatility signatures. 
+        
+        *(Note: While SHAP analysis later revealed that specific engineered features like `VOC_FFT` became the strongest predictors of failure, the FFT transformation pipeline was applied universally across the entire dataset.)*
         """)
         st.divider()
         st.subheader("🔍 Real SHAP Beeswarm Plot (Chemical Drivers)")
         if os.path.exists("image/shap_chemical.png"):
-            st.image("image/shap_chemical.png", caption="True SHAP values showing VOC impact on model output")
+            st.image("image/shap_chemical.png", caption="True SHAP values showing the impact of rolling features on model output")
 
     else:
         st.markdown("""
-        **Domain Boundaries & Mathematical Constraints:**
-        1. **Mechanical Power Feature Extraction:**
-        $$Power = Torque(Nm) \\times \\left[Speed(RPM) \\times \\frac{2\\pi}{60}\\right]$$
-        2. **Thermal Dissipation Delta Calculation:**
-        $$\\Delta T = Process\\_Temp(K) - Air\\_Temp(K)$$
-        3. **Rotational Waveforms:** Applied **FFT transformation sequences** (`Tool_wear_min_FFT`) to capture subtle mechanical tool imbalances.
+        **Physics-Informed & Frequency Implementations:**
+        1. **Physics-Informed Equations:** Translated raw streaming IoT variables into hard physical boundaries:
+           * **Mechanical Power:** $Power = Torque(Nm) \\times \\left[Speed(RPM) \\times \\frac{2\\pi}{60}\\right]$
+           * **Thermal Dissipation:** $\\Delta T = Process\\_Temp(K) - Air\\_Temp(K)$
+        2. **Rolling FFT Analysis:** Applied continuous Fast Fourier Transform across the **entire mechanical time-series dataset** to capture subtle rotational and vibrational imbalances. 
+        
+        *(Note: While SHAP analysis later revealed that features like `Tool_wear_min_FFT` ranked as critical drivers, the FFT pipeline processed all available sensor variables.)*
         """)
         st.divider()
         st.subheader("🔍 Real SHAP Beeswarm Plot (Mechanical Drivers)")
         if os.path.exists("image/shap_mechanical.png"):
-            st.image("image/shap_mechanical.png", caption="True SHAP values showing Tool Wear and Mechanical Power impact")
-
+            st.image("image/shap_mechanical.png", caption="True SHAP values showing Physics-Informed and FFT feature impacts")
 # ==========================================
 # TAB 4: CRISP-DM FRAMEWORK LIFECYCLE
 # ==========================================
