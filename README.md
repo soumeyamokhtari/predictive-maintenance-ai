@@ -40,7 +40,6 @@ Using **SHAP (SHapley Additive exPlanations)**, the black-box nature of the XGBo
 
 
 ## 🚀 How to Run Locally
-
 1. Clone this repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/predictive-maintenance-ai.git](https://github.com/YOUR_USERNAME/predictive-maintenance-ai.git)
+   git clone https://github.com/soumeyamokhtari/predictive-maintenance-ai.git
