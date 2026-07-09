@@ -82,6 +82,11 @@ with tab1:
 with tab2:
     st.header("📊 Scientific Model Verification Metrics")
     
+    st.success("""
+    💡 **Optimization Strategy (Recall over Accuracy):** In industrial predictive maintenance, missing a catastrophic failure (False Negative) is vastly more dangerous and expensive than tripping a false alarm (False Positive). Therefore, this framework prioritizes **Recall optimization**. 
+    While this led to a massive recall surge in the mechanical dataset, it resulted in a slight, mathematically acceptable drop in the chemical dataset to achieve cross-domain stability.
+    """)
+    
     if "Chemical" in domain:
         st.subheader("🧪 Chemical Expert Model Performance")
         metrics_df = pd.DataFrame({
@@ -107,16 +112,20 @@ with tab2:
         st.subheader("🔢 Real Confusion Matrix (Mechanical)")
         if os.path.exists("image/cm_mechanical.png"):
             st.image("image/cm_mechanical.png", caption="Real Confusion Matrix output from XGBoost Mechanical Model")
-
+            
 # ==========================================
 # TAB 3: PHYSICS-INFORMED FEATURE ENGINEERING & SHAP
 # ==========================================
 with tab3:
     st.header("🧬 Feature Engineering & Explainable AI (XAI)")
     
+    st.info("""
+    🤝 **Bridging the Trust Gap for Industry 5.0:** Industries currently struggle with the "black box" nature of advanced ML like XGBoost. By applying SHAP, this framework provides technically verifiable transparency for every single prediction. When maintenance engineers can physically see *why* a machine is failing, they trust the AI. This human-centric transparency directly promotes the green energy efficiency goals of **Industry 5.0**.
+    """)
+    
     st.subheader("📐 Custom Feature Generation Formulas")
     if "Chemical" in domain:
-        st.info("""
+        st.markdown("""
         **Dual-Domain Transformation Breakdown:**
         * **Time-Domain Engineering:** Extracted rolling statistical metrics including standard deviations (`RP_std`) and moving means to capture early trend drift.
         * **Frequency-Domain Signal Processing:** Applied **Fast Fourier Transform (FFT)** algorithms directly onto raw ambient properties (`VOC_FFT`) to reveal periodic volatility signatures invisible to standard classifiers.
@@ -127,7 +136,7 @@ with tab3:
             st.image("image/shap_chemical.png", caption="True SHAP values showing VOC impact on model output")
 
     else:
-        st.info("""
+        st.markdown("""
         **Domain Boundaries & Mathematical Constraints:**
         1. **Mechanical Power Feature Extraction:**
         $$Power = Torque(Nm) \\times \\left[Speed(RPM) \\times \\frac{2\\pi}{60}\\right]$$
