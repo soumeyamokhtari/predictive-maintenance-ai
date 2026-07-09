@@ -3,7 +3,7 @@
 ## 🏆 MSc Dissertation Project — Grade: 81% (Distinction)
 
 ### 🔗 Live Interactive Dashboard
-[👉 Click here to launch the Live Dashboard](PASTE_YOUR_STREAMLIT_LINK_HERE_LATER)
+[👉 Click here to launch the Live Dashboard](https://predictive-maintenance-ai-c9hqs5elbyo72t7drefoqz.streamlit.app/)
 
 ---
 
