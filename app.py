@@ -80,6 +80,8 @@ with tab1:
     })
     st.bar_chart(data=viz_df, x="Maintenance Strategy", y="Total Budget Loss (£)", use_container_width=True)
 
+import os
+
 # ==========================================
 # TAB 2: MODEL EVALUATION & CONFUSION MATRICES
 # ==========================================
@@ -88,36 +90,40 @@ with tab2:
     
     if "Chemical" in domain:
         st.subheader("🧪 Chemical Expert Model Performance (AI4I 2020 Dataset)")
-        
-        # Performance Indicators Table
         metrics_df = pd.DataFrame({
             "Evaluation Metric": ["Accuracy", "Recall (Catch Rate)", "F1-Score", "Cross-Validation Stability"],
             "Baseline Architecture": ["91.53%", "91.14%", "---", "89.54%"],
             "Optimized Expert Model": ["91.01%", "89.87%", "89.31%", "90.48%"]
         })
         st.table(metrics_df)
-        
         st.divider()
         
-        # Real Confusion Matrix Image Connection
         st.subheader("🔢 Real Confusion Matrix (Chemical Domain)")
-        st.image("image/cm_chemical.png", caption="Real Confusion Matrix output from XGBoost Chemical Model", use_container_width=True)
+        # Put image in a center column to prevent giant stretching
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            if os.path.exists("image/cm_chemical.png"):
+                st.image("image/cm_chemical.png", caption="Real Confusion Matrix output from XGBoost Chemical Model")
+            else:
+                st.warning("⚠️ Missing 'cm_chemical.png' in the image folder.")
             
     else:
         st.subheader("⚙️ Mechanical Expert Model Performance (Sensor Telemetry Data)")
-        
         metrics_df = pd.DataFrame({
             "Evaluation Metric": ["Accuracy", "Recall (Catch Rate)", "F1-Score", "Cross-Validation Stability"],
             "Baseline Architecture": ["~98.60%", "69.12%", "---", "98.44%"],
             "Optimized Expert Model": ["~98.60%", "80.88%", "79.71%", "98.05%"]
         })
         st.table(metrics_df)
-        
         st.divider()
         
-        # Real Confusion Matrix Image Connection
         st.subheader("🔢 Real Confusion Matrix (Mechanical Domain)")
-        st.image("image/cm_mechanical.png", caption="Real Confusion Matrix output from XGBoost Mechanical Model", use_container_width=True)
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            if os.path.exists("image/cm_mechanical.png"):
+                st.image("image/cm_mechanical.png", caption="Real Confusion Matrix output from XGBoost Mechanical Model")
+            else:
+                st.warning("⚠️ Missing 'cm_mechanical.png' in the image folder.")
 
 # ==========================================
 # TAB 3: PHYSICS-INFORMED FEATURE ENGINEERING & SHAP
@@ -153,10 +159,16 @@ with tab3:
     with col_right:
         if "Chemical" in domain:
             st.subheader("🔍 Real SHAP Beeswarm Plot (Chemical Domain Drivers)")
-            st.image("image/shap_chemical.png", caption="True SHAP values showing VOC impact on model output", use_container_width=True)
+            if os.path.exists("image/shap_chemical.png"):
+                st.image("image/shap_chemical.png", caption="True SHAP values showing VOC impact on model output", use_container_width=True)
+            else:
+                st.warning("⚠️ Missing 'shap_chemical.png' in the image folder.")
         else:
             st.subheader("🔍 Real SHAP Beeswarm Plot (Mechanical Domain Drivers)")
-            st.image("image/shap_mechanical.png", caption="True SHAP values showing Tool Wear and Mechanical Power impact", use_container_width=True)
+            if os.path.exists("image/shap_mechanical.png"):
+                st.image("image/shap_mechanical.png", caption="True SHAP values showing Tool Wear and Mechanical Power impact", use_container_width=True)
+            else:
+                st.warning("⚠️ Missing 'shap_mechanical.png' in the image folder.")
 
 # ==========================================
 # TAB 4: CRISP-DM FRAMEWORK LIFECYCLE
@@ -164,9 +176,12 @@ with tab3:
 with tab4:
     st.header("🔄 Applied Data Lifecycle Methodology")
     st.markdown("This deployment pipeline strictly adheres to the industrial **CRISP-DM** lifecycle standard to guarantee reliable, production-grade deployment updates.")
-    
     st.divider()
     
-    # Real CRISP-DM Cycle Diagram Connection
     st.subheader("🔄 Real-World CRISP-DM Implementation Cycle")
-    st.image("image/crisp_dm.png", caption="My engineering lifecycle diagram from initial understanding to XAI deployment", use_container_width=True)
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        if os.path.exists("image/crisp_dm.png"):
+            st.image("image/crisp_dm.png", caption="My engineering lifecycle diagram from initial understanding to XAI deployment", use_container_width=True)
+        else:
+            st.warning("⚠️ Missing 'crisp_dm.png' in the image folder.")
