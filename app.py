@@ -91,7 +91,7 @@ with tab2:
         st.subheader("🧪 Chemical Expert Model Performance")
         metrics_df = pd.DataFrame({
             "Evaluation Metric": ["Accuracy", "Recall (Catch Rate)", "F1-Score", "CV Stability"],
-            "Baseline Architecture": ["91.53%", "91.14%", "---", "89.54%"],
+            "Baseline Architecture": ["91.53%", "91.14%", "N/A", "89.54%"],
             "Optimised Expert Model": ["91.01%", "89.87%", "89.31%", "90.48%"]
         })
         st.table(metrics_df)
@@ -104,7 +104,7 @@ with tab2:
         st.subheader("⚙️ Mechanical Expert Model Performance")
         metrics_df = pd.DataFrame({
             "Evaluation Metric": ["Accuracy", "Recall (Catch Rate)", "F1-Score", "CV Stability"],
-            "Baseline Architecture": ["~98.60%", "69.12%", "---", "98.44%"],
+            "Baseline Architecture": ["~98.60%", "69.12%", "N/A", "98.44%"],
             "Optimised Expert Model": ["~98.60%", "80.88%", "79.71%", "98.05%"]
         })
         st.table(metrics_df)
