@@ -97,23 +97,11 @@ with tab2:
         })
         st.table(metrics_df)
         
-        # Hardcoded Matrix representation matching your exact outputs
-        st.subheader("🔢 Validation Confusion Matrix (D1)")
-        cm_col1, cm_col2 = st.columns([1, 2])
-        with cm_col1:
-            matrix_data = pd.DataFrame(
-                [[101, 9], [8, 71]], 
-                index=["True Healthy (0)", "True Failure (1)"], 
-                columns=["Predicted Healthy (0)", "Predicted Failure (1)"]
-            )
-            st.dataframe(matrix_data, use_container_width=True)
-        with cm_col2:
-            st.info("""
-            **Key Performance Insights (Chemical):**
-            * **True Positives (71):** Failures cleanly captured before catastrophic asset breakdown occurs.
-            * **False Negatives (8):** Missed failures prioritized for risk mitigation.
-            * **Trade-off Decision:** A negligible reduction in baseline accuracy was accepted to isolate a highly stable, generalized **90.48% Cross-Validation score** across shifting domain splits.
-            """)
+        st.divider()
+        
+        # Real Confusion Matrix Image Connection
+        st.subheader("🔢 Real Confusion Matrix (Chemical Domain)")
+        st.image("image/cm_chemical.png", caption="Real Confusion Matrix output from XGBoost Chemical Model", use_container_width=True)
             
     else:
         st.subheader("⚙️ Mechanical Expert Model Performance (Sensor Telemetry Data)")
@@ -125,21 +113,11 @@ with tab2:
         })
         st.table(metrics_df)
         
-        st.subheader("🔢 Validation Confusion Matrix (D2)")
-        cm_col1, cm_col2 = st.columns([1, 2])
-        with cm_col1:
-            matrix_data = pd.DataFrame(
-                [[1917, 15], [13, 55]], 
-                index=["True Healthy (0)", "True Failure (1)"], 
-                columns=["Predicted Healthy (0)", "Predicted Failure (1)"]
-            )
-            st.dataframe(matrix_data, use_container_width=True)
-        with cm_col2:
-            st.info("""
-            **Key Performance Insights (Mechanical):**
-            * **Significant Recall Gain:** Optimization directly boosted fault capture efficiency from **69.12% up to 80.88%**.
-            * **High Imbalance Mastery:** Even within a highly skewed asset distribution environment (1,917 healthy signals vs 55 failure signals), the SMOTE-balanced pipeline restricted false alarms to only 15 instances.
-            """)
+        st.divider()
+        
+        # Real Confusion Matrix Image Connection
+        st.subheader("🔢 Real Confusion Matrix (Mechanical Domain)")
+        st.image("image/cm_mechanical.png", caption="Real Confusion Matrix output from XGBoost Mechanical Model", use_container_width=True)
 
 # ==========================================
 # TAB 3: PHYSICS-INFORMED FEATURE ENGINEERING & SHAP
@@ -173,24 +151,12 @@ with tab3:
             """)
             
     with col_right:
-        st.subheader("🔍 Model Feature Importance (SHAP Drivers)")
-        
         if "Chemical" in domain:
-            shap_data = pd.DataFrame({
-                "Feature Target": ["VOC", "AQ", "USS", "CS", "tempMode_std", "RP_std", "VOC_FFT"],
-                "Mean Absolute SHAP Value (Impact)": [3.2, 2.1, 1.8, 1.4, 0.9, 0.7, 0.5]
-            }).sort_values(by="Mean Absolute SHAP Value (Impact)", ascending=True)
-            
-            st.bar_chart(data=shap_data, x="Feature Target", y="Mean Absolute SHAP Value (Impact)", use_container_width=True)
-            st.caption("Top variables ranked by impact on chemical machine failure predictions. `VOC_FFT` ranks as a key engineered driver.")
+            st.subheader("🔍 Real SHAP Beeswarm Plot (Chemical Domain Drivers)")
+            st.image("image/shap_chemical.png", caption="True SHAP values showing VOC impact on model output", use_container_width=True)
         else:
-            shap_data = pd.DataFrame({
-                "Feature Target": ["Tool_wear_min", "Rotational_speed_rpm", "Mechanical_Power", "Torque_Nm", "Temp_Delta_std", "Tool_wear_min_FFT"],
-                "Mean Absolute SHAP Value (Impact)": [4.1, 2.9, 2.4, 1.9, 1.1, 0.8]
-            }).sort_values(by="Mean Absolute SHAP Value (Impact)", ascending=True)
-            
-            st.bar_chart(data=shap_data, x="Feature Target", y="Mean Absolute SHAP Value (Impact)", use_container_width=True)
-            st.caption("Top variables ranked by impact on mechanical failure models. Custom engineered features (`Mechanical_Power`, `Temp_Delta_std`) rank among the highest predictors.")
+            st.subheader("🔍 Real SHAP Beeswarm Plot (Mechanical Domain Drivers)")
+            st.image("image/shap_mechanical.png", caption="True SHAP values showing Tool Wear and Mechanical Power impact", use_container_width=True)
 
 # ==========================================
 # TAB 4: CRISP-DM FRAMEWORK LIFECYCLE
@@ -199,22 +165,8 @@ with tab4:
     st.header("🔄 Applied Data Lifecycle Methodology")
     st.markdown("This deployment pipeline strictly adheres to the industrial **CRISP-DM** lifecycle standard to guarantee reliable, production-grade deployment updates.")
     
-    steps_df = pd.DataFrame({
-        "Lifecycle Phase": [
-            "1. Business Understanding", 
-            "2. Data Understanding", 
-            "3. Data Preparation", 
-            "4. Predictive Modelling", 
-            "5. Model Evaluation", 
-            "6. XAI & Live Deployment"
-        ],
-        "Executed Framework Actions": [
-            "Identified the Predictive Maintenance (PdM) Trust Gap; defined optimization objectives to secure transparent machine states.",
-            "Sourced multi-domain secondary assets (AI4I 2020 + Mechanical Sensor Data streams); ran complete Exploratory Data Analysis (EDA).",
-            "Cleaned outlier signals; applied SMOTE balancing transformations; generated dual-domain FFT transformations and physical boundary equations.",
-            "Constructed gradient-boosted decision matrices using Python XGBoost algorithms; optimized tuning layers via automated GridSearchCV grids.",
-            "Prioritized Recall thresholds to heavily minimize catastrophic False Negatives; validated framework cross-validation stability parameters.",
-            "Integrated game-theory explainability metrics (SHAP value layers) to eliminate the black-box gap; launched interactive Streamlit interfaces."
-        ]
-    })
-    st.table(steps_df)
+    st.divider()
+    
+    # Real CRISP-DM Cycle Diagram Connection
+    st.subheader("🔄 Real-World CRISP-DM Implementation Cycle")
+    st.image("image/crisp_dm.png", caption="My engineering lifecycle diagram from initial understanding to XAI deployment", use_container_width=True)
