@@ -11,7 +11,7 @@ st.set_page_config(
 
 # 2. Top-Level Header
 st.title("⚙️ Predictive Maintenance in Industrial IoT")
-st.markdown("### Explainable XGBoost & FFT Framework | MSc Dissertation (Grade: 81% Distinction)")
+st.markdown("### Explainable XGBoost & FFT Framework | MSc Dissertation ")
 st.write("---")
 
 # 3. Sidebar Configuration 
