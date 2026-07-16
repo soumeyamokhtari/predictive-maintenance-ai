@@ -43,4 +43,4 @@ Using **SHAP (SHapley Additive exPlanations)**, the black-box nature of the XGBo
 
 1. Clone this repository:
 ```bash
-git clone [https://github.com/soumeyamokhtari/Predictive-maintenance-ai.git](https://github.com/soumeyamokhtari/Predictive-maintenance-ai.git)
+git clone https://github.com/soumeyamokhtari/Predictive-maintenance-ai.git
